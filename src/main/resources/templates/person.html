@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:float="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>个人信息</title>
+  <link rel="stylesheet" href="/css/weui.css"/>
+  <link rel="stylesheet" href="/css/weuix.css"/>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/common/zepto.min.js"></script>
+  <script src="/js/common/zepto.weui.js"></script>
+
+
+    <script>
+        function modperson(){
+
+            var pusername=$("#pusername").val();
+            var pusersex=$("#pusersex").val();
+            var puserage=$("#puserage").val();
+            var pusercall=$("#pusercall").val();
+            if(!pusername){
+                $("#message").html("姓名不能为空！");
+                return false;
+            }else if(!pusersex) {
+                $("#message").html("性别不能为空！");
+                return false;
+            }else if(!puserage){
+                    $("#message").html("年龄不能为空！");
+                    return false;
+            }else if(!pusercall){
+                $("#message").html("手机号码不能为空！");
+                return false;
+            }else{
+                $("#modperson").submit();
+            }
+        }
+    </script>
+
+</head>
+<body ontouchstart>
+
+<div class="weui-flex head-con">
+    <div class="weui-flex__item weui-flex__item_left"><div class="placeholder"><a href="javascript:window.history.go(-1)"><span class="icon icon-109"></span></a></div></div>
+    <div class="weui-flex__item"><div class="placeholder">个人信息</div></div>
+    <div class="weui-flex__item weui-flex__item_right"><div class="placeholder"><a href="#"><span class="icon icon-40"></span></a></div></div>
+</div>
+<div style="margin-top: 50px"></div>
+
+
+    <form class="weui-cells" id="modperson" action="/user/personModify" method="post">
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">用户姓名</label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" placeholder="请输入修改姓名" type="tel" name="pusername" id="pusername"  th:value="${session.loginuser.getPuserName()}">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">用户性别</label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" placeholder="请输入性别" type="tel" name="pusersex" id="pusersex" pattern="[男|女]" th:value="${session.loginuser.getPuserSex()}">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">年龄</label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" placeholder="请输入年龄" type="number" min="0" max="110" name="puserage" id="puserage" th:value="${session.loginuser.getPuserAge()}">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">手机号码</label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" placeholder="请输入手机号码" type="number" pattern="[0-9]*" name="pusercall" id="pusercall" th:value="${session.loginuser.getPuserCall()}">
+            </div>
+        </div>
+
+
+        <h5  class="message1" id="message" th:text="${perMSG}" style="text-align: center;font-size:16px;color: red"></h5>
+
+    <div class="weui-btn-area">
+        <input class="weui-btn weui-btn_primary" type="button" value="确认修改" onclick="modperson()" id="btn"/>
+    </div>
+
+    </form>
+
+<!-- 导航 -->
+<div class="weui-tabbar weui-tabbar-flex">
+    <a href="/register/reglist" class="weui-tabbar__item">
+        <i class="icon icon-67 f27 weui-tabbar__icon"></i>
+        <p class="weui-tabbar__label">预约挂号</p>
+    </a>
+
+    <a href="/payOrder/paylist" class="weui-tabbar__item ">
+            <span style="display: inline-block;position: relative;">
+                <i class="icon icon-43 f27 weui-tabbar__icon"></i>
+            </span>
+        <p class="weui-tabbar__label">缴费管理</p>
+    </a>
+
+    <a href="/diagnosis/dialist" class="weui-tabbar__item  ">
+                <span style="display: inline-block;position: relative;">
+                    <i class="icon icon-115 f27 weui-tabbar__icon"></i>
+
+                </span>
+        <p class="weui-tabbar__label">诊断结果</p>
+    </a>
+
+    <a href="/user/mine" class="weui-tabbar__item ">
+        <i class="icon icon-85 f27 weui-tabbar__icon" ></i>
+        <p class="weui-tabbar__label">个人中心</p>
+    </a>
+</div>
+</body>
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:float="http://www.w3.org/1999/xhtml">
+<head>
+<title>预约挂号</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/weui.css"/>
+    <link rel="stylesheet" href="/css/weuix.css"/>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style2.css">
+
+
+    <script src="/js/common/zepto.min.js"></script>
+    <script src="/js/common/zepto.weui.js"></script>
+
+    <script src="/lib/jquery-2.1.4.js"></script>
+    <script src="/lib/fastclick.js"></script>
+    <script src="/js/jquery-weui.js"></script>
+
+</head>
+<body ontouchstart>
+<!--顶部搜索-->
+<!--主体-->
+
+
+
+
+<div class="wy-content">
+  <div class="category-top">
+    <header class='weui-header'>
+  <div class="weui-search-bar" id="searchBar">
+    <form class="weui-search-bar__form">
+      <div class="weui-search-bar__box">
+        <i class="weui-icon-search"></i>
+        <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索您想要的商品" required>
+        <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+      </div>
+      <label class="weui-search-bar__label" id="searchText" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">
+        <i class="weui-icon-search"></i>
+        <span>快速查找科室与医生</span>
+      </label>
+    </form>
+    <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+  </div>
+</header>
+  </div>
+  <aside>
+    <div class="menu-left scrollbar-none" id="sidebar">
+      <ul>
+        <li th:each="hos,stat:${hosList}"  >
+          <span th:text="${hos['hosName']}"></span>
+          </li>
+        <!--
+        <li>二沙岛分院</li>
+        <li>大学城医院</li>
+        <li>芳村分院</li>
+        <li>石井门诊部</li>
+        <li>珠海分院</li>
+        <li>下塘门诊部</li>
+        -->
+      </ul>
+    </div>
+  </aside>
+      <section class="menu-right padding-all j-content" style="display:none">
+        <h5></h5>
+        <ul>
+            <li class="w-3" th:each="dep,stat:${deplist0}">
+                <a th:href="${dep['depHref']}"></a>
+                <span th:text="${dep['depName']}"></span>
+            </li>
+        </ul>
+      </section>
+
+    <section class="menu-right padding-all j-content" style="display:none">
+        <h5></h5>
+        <ul>
+            <li class="w-3" th:each="dep,stat:${deplist1}">
+                <a th:href="${dep['depHref']}"></a>
+                <span th:text="${dep['depName']}"></span>
+            </li>
+        </ul>
+    </section>
+
+
+    <section class="menu-right padding-all j-content" style="display:none">
+        <h5></h5>
+        <ul>
+            <li class="w-3" th:each="dep,stat:${deplist2}">
+                <a th:href="${dep['depHref']}"></a>
+                <span th:text="${dep['depName']}"></span>
+            </li>
+        </ul>
+    </section>
+
+    <section class="menu-right padding-all j-content" style="display:none">
+        <h5></h5>
+        <ul>
+            <li class="w-3" th:each="dep,stat:${deplist3}">
+                <a th:href="${dep['depHref']}"></a>
+                <span th:text="${dep['depName']}"></span>
+            </li>
+        </ul>
+    </section>
+
+    <section class="menu-right padding-all j-content" style="display:none">
+        <h5></h5>
+        <ul>
+            <li class="w-3" th:each="dep,stat:${deplist4}">
+                <a th:href="${dep['depHref']}"></a>
+                <span th:text="${dep['depName']}"></span>
+            </li>
+        </ul>
+    </section>
+
+    <section class="menu-right padding-all j-content" style="display:none">
+        <h5></h5>
+        <ul>
+            <li class="w-3" th:each="dep,stat:${deplist5}">
+                <a th:href="${dep['depHref']}"></a>
+                <span th:text="${dep['depName']}"></span>
+            </li>
+        </ul>
+    </section>
+
+    <section class="menu-right padding-all j-content" style="display:none">
+        <h5></h5>
+        <ul>
+            <li class="w-3" th:each="dep,stat:${deplist6}">
+                <a th:href="${dep['depHref']}"></a>
+                <span th:text="${dep['depName']}"></span>
+            </li>
+        </ul>
+    </section>
+
+
+        <!--
+       <li class="w-3"><a href="/register/regDocList?depNo=1"></a>西区外科门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区七楼肛肠门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区七楼肿瘤门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区儿科门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区六楼口腔门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区耳鼻喉科门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区针灸门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>北区骨科门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区按摩门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>研修楼理疗门诊 </li>
+
+
+
+ <section class="menu-right padding-all j-content" style="display:none">
+   <h5 >二沙岛分院</h5>
+   <ul>
+     <li class="w-3"><a href="regDocList.html"></a>二沙外科门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>二沙内科门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>二沙妇科门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>二沙儿科门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>二沙口腔门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>二沙耳鼻喉科门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>二沙针灸门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>二沙骨科门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>二沙按摩门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>二沙理疗门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>二沙理疗门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>二沙理疗门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>二沙理疗门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>二沙理疗门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>二沙理疗门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>二沙理疗门诊 </li>
+   </ul>
+ </section>
+ <section class="menu-right padding-all j-content" style="display:none">
+   <h5 >芳村分院</h5>
+   <ul>
+     <li class="w-3"><a href="regDocList.html"></a>西区外科门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区七楼肛肠门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区七楼肿瘤门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区儿科门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区六楼口腔门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区耳鼻喉科门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区针灸门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>北区骨科门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区按摩门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>研修楼理疗门诊 </li>
+   </ul>
+ </section>
+ <section class="menu-right padding-all j-content" style="display:none">
+   <h5 >大学城医院</h5>
+   <ul>
+     <li class="w-3"><a href="regDocList.html"></a>西区外科门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区七楼肛肠门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区七楼肿瘤门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区儿科门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区六楼口腔门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区耳鼻喉科门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区针灸门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>北区骨科门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区按摩门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>研修楼理疗门诊 </li>
+   </ul>
+ </section>
+ <section class="menu-right padding-all j-content" style="display:none">
+   <h5 >下塘门诊部</h5>
+   <ul>
+     <li class="w-3"><a href="regDocList.html"></a>西区外科门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区七楼肛肠门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区七楼肿瘤门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区儿科门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区六楼口腔门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区耳鼻喉科门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区针灸门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>北区骨科门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区按摩门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>研修楼理疗门诊 </li>
+   </ul>
+ </section>
+
+ <section class="menu-right padding-all j-content" style="display:none">
+   <h5 >天河门诊部</h5>
+   <ul>
+     <li class="w-3"><a href="regDocList.html"></a>西区外科门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区七楼肛肠门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区七楼肿瘤门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区儿科门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区六楼口腔门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区耳鼻喉科门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区针灸门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>北区骨科门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区按摩门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>研修楼理疗门诊 </li>
+   </ul>
+ </section>
+ <section class="menu-right padding-all j-content" style="display:none">
+   <h5 >石井门诊部</h5>
+   <ul>
+     <li class="w-3"><a href="regDocList.html"></a>西区外科门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区七楼肛肠门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区七楼肿瘤门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区儿科门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区六楼口腔门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区耳鼻喉科门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区针灸门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>北区骨科门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>东区按摩门诊 </li>
+     <li class="w-3"><a href="regDocList.html"></a>研修楼理疗门诊 </li>
+   </ul>
+ </section>
+
+-->
+
+</div>
+
+
+
+
+<script>
+  $(function() {
+    FastClick.attach(document.body);
+  });
+  window.onload =function () {
+      $('#sidebar ul li').eq(0).addClass('active');
+      $('.j-content').eq(0).show();
+      var hoName = $('#sidebar ul li').eq(0).children('span').text();
+      $('.j-content').eq(0).children('h5').text(hoName);
+  }
+</script>
+
+<script type="text/javascript">
+
+	$(function($){
+		$('#sidebar ul li').click(function(){
+			$(this).addClass('active').siblings('li').removeClass('active');
+			var index = $(this).index();
+			var hosName = $(this).children('span').text();
+            $('.j-content').eq(index).children('h5').text(hosName);
+			$('.j-content').eq(index).show().siblings('.j-content').hide();
+		})
+	})
+
+
+
+</script>
+
+<!-- 导航 -->
+<div class="weui-tabbar weui-tabbar-flex">
+  <a href="/register/reglist" class="weui-tabbar__item weui-bar__item_on">
+    <i class="icon icon-67 f27 weui-tabbar__icon"></i>
+    <p class="weui-tabbar__label">预约挂号</p>
+  </a>
+
+  <a href="/payOrder/paylist" class="weui-tabbar__item ">
+            <span style="display: inline-block;position: relative;">
+                <i class="icon icon-43 f27 weui-tabbar__icon"></i>
+
+            </span>
+    <p class="weui-tabbar__label">缴费管理</p>
+  </a>
+
+  <a href="/diagnosis/dialist" class="weui-tabbar__item  ">
+                <span style="display: inline-block;position: relative;">
+                    <i class="icon icon-115 f27 weui-tabbar__icon"></i>
+
+                </span>
+    <p class="weui-tabbar__label">诊断结果</p>
+  </a>
+
+  <a href="/user/mine" class="weui-tabbar__item ">
+    <i class="icon icon-85 f27 weui-tabbar__icon" ></i>
+    <p class="weui-tabbar__label">个人中心</p>
+  </a>
+</div>
+</body>
+</html>

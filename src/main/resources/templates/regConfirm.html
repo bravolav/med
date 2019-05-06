@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:float="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>确认挂号</title>
+  <link rel="stylesheet" href="/css/weui.css"/>
+  <link rel="stylesheet" href="/css/weuix.css"/>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/common/zepto.min.js"></script>
+  <script src="/js/common/zepto.weui.js"></script>
+</head>
+<body ontouchstart>
+
+
+
+<div class="weui-flex head-con">
+    <div class="weui-flex__item weui-flex__item_left"><div class="placeholder"><a href="javascript:window.history.go(-1)"><span class="icon icon-109"></span></a></div></div>
+    <div class="weui-flex__item"><div class="placeholder">确认挂号</div></div>
+    <div class="weui-flex__item weui-flex__item_right"><div class="placeholder"><a href="#"><span class="icon icon-40"></span></a></div></div>
+</div>
+
+<div style="height:48px;"></div>
+
+
+<form>
+<div class="weui-cells mt_0">
+    <a class="weui-cell weui-cell_access" >
+        <div class="weui-cell__bd">
+            <p>医生姓名</p>
+        </div>
+        <div class="weui-cells__bd" th:text="${docName}"></div>
+    </a>
+    <a class="weui-cell weui-cell_access" >
+        <div class="weui-cell__bd">
+            <p>科室</p>
+        </div>
+        <div class="weui-cells__bd" th:text="${depName}"></div>
+    </a>
+    <a class="weui-cell weui-cell_access" >
+        <div class="weui-cell__bd">
+            <p>就诊院区</p>
+        </div>
+        <div class="weui-cells__bd" th:text="${hosName}"></div>
+    </a>
+    <a class="weui-cell weui-cell_access" >
+        <div class="weui-cell__bd">
+            <p>就诊时段</p>
+        </div>
+
+        <div class="weui-cells__bd">
+
+            <input type="text" id="datetime-picker" name="regTime"
+                   style="font-size: 18px;
+                    width: 148px;border: 1px" placeholder="请选择就诊时间"/></div>
+    </a>
+    <a class="weui-cell weui-cell_access" >
+        <div class="weui-cell__bd">
+            <p>挂号金额</p>
+        </div>
+        <div class="weui-cells__bd" name="payamount" th:text="${amount}" style="color: #CE3C39; font-size: 18px">10.0</div>元
+    </a>
+
+
+    <a class="weui-cell weui-cell_access" >
+        <div class="weui-cell__bd">
+            <p>就诊人姓名</p>
+        </div>
+        <div class="weui-cells__bd" th:text="${userName}"></div>
+    </a>
+    <a class="weui-cell weui-cell_access" >
+        <div class="weui-cell__bd">
+            <p>就诊人编号</p>
+        </div>
+        <div class="weui-cells__bd" th:text="${userNo}"></div>
+    </a>
+</div>
+    <div  name="docNo" style="display:none" th:text="${docNo}"></div>
+
+
+
+    <div class="weui-btn-area">
+        <a class="weui-btn weui-btn_primary" href="/register/regSuccess" id="btn">确认挂号</a>
+    </div>
+</form>
+<!-- 导航 -->
+<div class="weui-tabbar weui-tabbar-flex">
+    <a href="/register/reglist" class="weui-tabbar__item">
+        <i class="icon icon-67 f27 weui-tabbar__icon"></i>
+        <p class="weui-tabbar__label">预约挂号</p>
+    </a>
+
+    <a href="/payOrder/paylist" class="weui-tabbar__item ">
+            <span style="display: inline-block;position: relative;">
+                <i class="icon icon-43 f27 weui-tabbar__icon"></i>
+
+            </span>
+        <p class="weui-tabbar__label">缴费管理</p>
+    </a>
+
+    <a href="/diagnosis/dialist" class="weui-tabbar__item ">
+                <span style="display: inline-block;position: relative;">
+                    <i class="icon icon-115 f27 weui-tabbar__icon"></i>
+
+                </span>
+        <p class="weui-tabbar__label">诊断结果</p>
+    </a>
+
+    <a href="/user/mine" class="weui-tabbar__item ">
+        <i class="icon icon-85 f27 weui-tabbar__icon" ></i>
+        <p class="weui-tabbar__label">个人中心</p>
+    </a>
+</div>
+
+
+
+<script>
+    $("#datetime-picker").datetimePicker();
+
+
+</script>
+</body>
+</html>

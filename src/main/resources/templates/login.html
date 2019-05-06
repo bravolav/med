@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:float="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>登录页</title>
+  <link rel="stylesheet" href="/css/weui.css"/>
+  <link rel="stylesheet" href="/css/weuix.css"/>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/common/zepto.min.js"></script>
+  <script src="/js/common/zepto.weui.js"></script>
+
+    <script>
+        function login(){
+            $("#message").html("正在登录.......");
+            var id=$("#account").val();
+            var password=$("#password").val();
+            if(!id){
+                $("#message").html("用户名不能为空！");
+                return false;
+            }
+            else if(!password){
+                $("#message").html("密码不能为空！");
+                return false;
+            }else{
+                $("#login").submit();
+            }
+        }
+    </script>
+</head>
+<body ontouchstart>
+<h1 class="login-title" >智能就医平台</h1>
+    <form class="weui-cells weui-form" id="login" action="/userLogin" method="post">
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">账号</label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" placeholder="请输入账号" type="tel"  name="account" id="account">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">密码</label>
+            </div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" placeholder="请输入密码" type="password" name="password" id="password">
+            </div>
+        </div>
+
+
+        <h5  class="message1" id="message" th:text="${MSG}" style="text-align: center;font-size:16px;color: red"></h5>
+        <div class="weui-btn-area">
+            <input class="weui-btn weui-btn_primary" type="button" id="btn" value="登录" onclick="login()"/>
+        </div>
+    </form>
+        <div class="weui-btn-area">
+            <a class="weui-btn weui-btn_primary" href="/register" id="btn">注册</a>
+        </div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:float="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>个人中心</title>
+  <link rel="stylesheet" href="/css/weui.css"/>
+  <link rel="stylesheet" href="/css/weuix.css"/>
+  <link rel="stylesheet" href="/css/style.css">
+
+
+  <script src="/js/common/zepto.min.js"></script>
+  <script src="/js/common/zepto.weui.js"></script>
+
+</head>
+<body ontouchstart>
+
+    <div class="weui-flex head-con">
+        <div class="weui-flex__item weui-flex__item_left"><div class="placeholder"><a href="javascript:window.history.go(-1)"><span class="icon icon-109"></span></a></div></div>
+        <div class="weui-flex__item"><div class="placeholder">个人中心</div></div>
+        <div class="weui-flex__item weui-flex__item_right"><div class="placeholder"><a href="#"><span class="icon icon-40"></span></a></div></div>
+    </div>
+
+    <div style="height:48px;"></div>
+
+    <div class="mine-top">
+        <div class="weui-avatar-circle">
+            <img src="/images/user.jpg">
+        </div>
+        <span>用户: </span><span th:text="${session.loginuser.getPuserName()}"></span>
+        <p><span>性别:</span><span th:text="${session.loginuser.getPuserSex()}"></span>
+            <span>   年龄:</span><span th:text="${session.loginuser.getPuserAge()}"></span>
+        </p>
+    </div>
+
+    <div class="weui-grids"  >
+        <a href="/register/regOrder" class="weui-grid js_grid" >
+            <div class="weui-grid__icon">
+                <img src="/images/icon/reg.png" alt="">
+            </div>
+            <p class="weui-grid__label">
+                我的挂号
+            </p>
+        </a>
+        <a href="/payOrder/paylist" class="weui-grid js_grid"  >
+            <div class="weui-grid__icon">
+                <img src="/images/icon/付费.png" alt="">
+            </div>
+            <p class="weui-grid__label">
+                缴费管理
+            </p>
+        </a>
+        <a href="/diagnosis/dialist" class="weui-grid js_grid" >
+            <div class="weui-grid__icon">
+                <img src="/images/icon/报告.png" alt="">
+            </div>
+            <p class="weui-grid__label">
+                诊断结果
+            </p>
+        </a>
+        <a href="/hospital/hoslist" class="weui-grid js_grid" >
+            <div class="weui-grid__icon">
+                <img src="/images/icon/医院.png" alt="">
+            </div>
+            <p class="weui-grid__label">
+                医院信息
+            </p>
+        </a>
+        <a href="/user/person" class="weui-grid js_grid" >
+            <div class="weui-grid__icon">
+                <img src="/images/icon/个人信息.png" alt="">
+            </div>
+            <p class="weui-grid__label">
+                个人信息
+            </p>
+        </a>
+        <a href="/user/password" class="weui-grid js_grid" >
+            <div class="weui-grid__icon">
+                <img src="/images/icon/修改密码.png" alt="">
+            </div>
+            <p class="weui-grid__label">
+                修改密码
+            </p>
+        </a>
+        <a href="/loginOut" class="weui-grid js_grid" >
+            <div class="weui-grid__icon">
+                <img src="/images/icon/退出登录.png" alt="">
+            </div>
+            <p class="weui-grid__label">
+                退出登录
+            </p>
+        </a>
+    </div>
+
+
+
+    <!-- 底部版权信息 -->
+
+
+    <div style="height:55px;"></div>
+
+    <!-- 导航 -->
+    <div class="weui-tabbar weui-tabbar-flex">
+        <a href="/register/reglist" class="weui-tabbar__item">
+            <i class="icon icon-67 f27 weui-tabbar__icon"></i>
+            <p class="weui-tabbar__label">预约挂号</p>
+        </a>
+
+        <a href="/payOrder/paylist" class="weui-tabbar__item ">
+            <span style="display: inline-block;position: relative;">
+                <i class="icon icon-43 f27 weui-tabbar__icon"></i>
+
+            </span>
+            <p class="weui-tabbar__label">缴费管理</p>
+        </a>
+
+        <a href="/diagnosis/dialist" class="weui-tabbar__item  ">
+                <span style="display: inline-block;position: relative;">
+                    <i class="icon icon-115 f27 weui-tabbar__icon"></i>
+
+                </span>
+            <p class="weui-tabbar__label">诊断结果</p>
+        </a>
+
+        <a href="/user/mine" class="weui-tabbar__item weui-bar__item_on">
+            <i class="icon icon-85 f27 weui-tabbar__icon" ></i>
+            <p class="weui-tabbar__label">个人中心</p>
+        </a>
+    </div>
+
+</body>
+</html>

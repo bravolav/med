@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>就诊结果</title>
+  <link rel="stylesheet" href="/css/weui.css"/>
+  <link rel="stylesheet" href="/css/weuix.css"/>
+  <link rel="stylesheet" href="/css/style.css">
+
+
+  <script src="/js/common/zepto.min.js"></script>
+  <script src="/js/common/zepto.weui.js"></script>
+
+</head>
+<body ontouchstart>
+
+    <div class="weui-flex head-con">
+        <div class="weui-flex__item weui-flex__item_left"><div class="placeholder"><a href="javascript:window.history.go(-1)"><span class="icon icon-109"></span></a></div></div>
+        <div class="weui-flex__item"><div class="placeholder">就诊结果</div></div>
+        <div class="weui-flex__item weui-flex__item_right"><div class="placeholder"><a href="#"><span class="icon icon-40"></span></a></div></div>
+    </div>
+
+    <div style="height:48px;"></div>
+
+    <ul class="weui-payrec">
+        <div class="weui-pay-m">
+            <li class="weui-pay-order">
+                <dl class="weui-pay-line">
+                    <dd class="weui-pay-name">大院-西区外科门诊</dd>
+                    <dt class="weui-pay-label">医生姓名：</dt><dd class="weui-pay-e">崔永元</dd>
+                </dl>
+                <dl class="weui-pay-line"><dt class="weui-pay-label">挂号编号：</dt><dd class="weui-pay-e">25</dd></dl>
+                <dl class="weui-pay-line"><dt class="weui-pay-label">创建时间：</dt><dd class="weui-pay-e">2015年1月16日 22:34</dd></dl>
+                <dl class="weui-pay-line"><dt class="weui-pay-label">就诊结果：</dt><dd class="weui-pay-e">左眉间一约2.5cm皮肤裂伤，渗血</dd></dl>
+
+
+
+            </li>
+        </div>
+
+        <div class="weui-pay-m">
+            <li class="weui-pay-order">
+                <dl class="weui-pay-line">
+                    <dd class="weui-pay-name">大学城-皮肤科门诊</dd>
+                    <dt class="weui-pay-label">医生姓名：</dt><dd class="weui-pay-e">陈晓芬</dd>
+                </dl>
+                <dl class="weui-pay-line"><dt class="weui-pay-label">挂号编号：</dt><dd class="weui-pay-e">26</dd></dl>
+                <dl class="weui-pay-line"><dt class="weui-pay-label">创建时间：</dt><dd class="weui-pay-e">2019年5月1日 12:34</dd></dl>
+                <dl class="weui-pay-line"><dt class="weui-pay-label">就诊结果：</dt><dd class="weui-pay-e">面部背部 丘疹、粉刺。皮肤油腻</dd></dl>
+
+
+            </li>
+        </div>
+
+
+    </ul>
+
+
+
+
+    <div style="height:55px;"></div>
+
+    <!-- 导航 -->
+    <div class="weui-tabbar weui-tabbar-flex">
+        <a href="/register/reglist" class="weui-tabbar__item">
+            <i class="icon icon-67 f27 weui-tabbar__icon"></i>
+            <p class="weui-tabbar__label">预约挂号</p>
+        </a>
+
+        <a href="/payOrder/paylist" class="weui-tabbar__item ">
+            <span style="display: inline-block;position: relative;">
+                <i class="icon icon-43 f27 weui-tabbar__icon"></i>
+
+            </span>
+            <p class="weui-tabbar__label">缴费管理</p>
+        </a>
+
+        <a href="/diagnosis/dialist" class="weui-tabbar__item  weui-bar__item_on">
+                <span style="display: inline-block;position: relative;">
+                    <i class="icon icon-115 f27 weui-tabbar__icon"></i>
+
+                </span>
+            <p class="weui-tabbar__label">诊断结果</p>
+        </a>
+
+        <a href="/user/mine" class="weui-tabbar__item ">
+            <i class="icon icon-85 f27 weui-tabbar__icon" ></i>
+            <p class="weui-tabbar__label">个人中心</p>
+        </a>
+    </div>
+
+</body>
+</html>

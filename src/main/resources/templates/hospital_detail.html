@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:float="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>医院详情</title>
+  <link rel="stylesheet" href="../css/weui.css"/>
+  <link rel="stylesheet" href="../css/weuix.css"/>
+  <link rel="stylesheet" href="../css/style.css">
+
+
+  <script src="../js/common/zepto.min.js"></script>
+  <script src="../js/common/zepto.weui.js"></script>
+  <script src="../js/common/swipe.js"></script>
+  <script src="../js/common/common.js"></script>
+</head>
+<body ontouchstart>
+
+    <div class="weui-flex head-con">
+        <div class="weui-flex__item weui-flex__item_left"><div class="placeholder"><a href="javascript:window.history.go(-1)"><span class="icon icon-109"></span></a></div></div>
+        <div class="weui-flex__item"><div class="placeholder">医院详情</div></div>
+        <div class="weui-flex__item weui-flex__item_right"><div class="placeholder"><a href="#"><span class="icon icon-40"></span></a></div></div>
+    </div>
+
+    <div style="height:48px;"></div>
+
+    <div class="slide" id="slide2">
+        <ul>
+            <li>
+                <a href="javascript:;">
+                    <img th:src='${imgUrl}' alt="">
+                </a>
+
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <img th:src='${imgUrl}' alt="">
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <img th:src='${imgUrl}' alt="">
+                </a>
+            </li>
+        </ul>
+        <div class="dot">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <div class="weui-panel__bd product-detail-info">
+        <div class="weui-media-box weui-media-box_text">
+            <h4 class="weui-media-box__title" th:text="${hosName}"></h4>
+            <p class="weui-media-box__desc" th:text="${hosDesc}">
+        </div>
+    </div>
+
+
+
+    <div class="weui-cells mt_0">
+        <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__bd">
+                <p>地址</p>
+            </div>
+            <div class="weui-cells__bd" th:text="${hosLocal}"></div>
+        </a>
+        <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__bd">
+                <p>电话</p>
+            </div>
+            <div class="weui-cells__bd" th:text="${hosCall}"></div>
+        </a>
+
+    </div>
+
+
+
+    <div style="height:55px;"></div>
+
+    <!-- 导航 -->
+    <div class="weui-tabbar weui-tabbar-flex">
+        <a href="/register/reglist" class="weui-tabbar__item">
+            <i class="icon icon-67 f27 weui-tabbar__icon"></i>
+            <p class="weui-tabbar__label">预约挂号</p>
+        </a>
+
+        <a href="/payOrder/paylist" class="weui-tabbar__item ">
+            <span style="display: inline-block;position: relative;">
+                <i class="icon icon-43 f27 weui-tabbar__icon"></i>
+
+            </span>
+            <p class="weui-tabbar__label">缴费管理</p>
+        </a>
+
+        <a href="/diagnosis/dialist" class="weui-tabbar__item ">
+                <span style="display: inline-block;position: relative;">
+                    <i class="icon icon-115 f27 weui-tabbar__icon"></i>
+
+                </span>
+            <p class="weui-tabbar__label">诊断结果</p>
+        </a>
+
+        <a href="/user/mine" class="weui-tabbar__item ">
+            <i class="icon icon-85 f27 weui-tabbar__icon" ></i>
+            <p class="weui-tabbar__label">个人中心</p>
+        </a>
+    </div>
+
+    <script>
+        $(function(){
+            $('#slide2').swipeSlide({
+                autoSwipe:true,//自动切换默认是
+                speed:3000,//速度默认4000
+                continuousScroll:true,//默认否
+                transitionType:'cubic-bezier(0.22, 0.69, 0.72, 0.88)',//过渡动画linear/ease/ease-in/ease-out/ease-in-out/cubic-bezier
+                lazyLoad:true,//懒加载默认否
+                firstCallback : function(i,sum,me){
+                    me.find('.dot').children().first().addClass('cur');
+                },
+                callback : function(i,sum,me){
+                    me.find('.dot').children().eq(i).addClass('cur').siblings().removeClass('cur');
+                }
+            });
+
+            var MAX = 99, MIN = 1;
+            $('.weui-count__decrease').click(function (e) {
+                var $input = $(e.currentTarget).parent().find('.weui-count__number');
+                var number = parseInt($input.val() || "0") - 1
+                if (number < MIN) number = MIN;
+                $input.val(number)
+            })
+            $('.weui-count__increase').click(function (e) {
+                var $input = $(e.currentTarget).parent().find('.weui-count__number');
+                var number = parseInt($input.val() || "0") + 1
+                if (number > MAX) number = MAX;
+                $input.val(number)
+            })
+        });
+    </script>
+
+</body>
+</html>

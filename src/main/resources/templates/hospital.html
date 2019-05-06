@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:float="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>医院信息</title>
+  <link rel="stylesheet" href="/css/weui.css"/>
+  <link rel="stylesheet" href="/css/weuix.css"/>
+  <link rel="stylesheet" href="/css/style.css">
+
+
+  <script src="/js/common/zepto.min.js"></script>
+  <script src="/js/common/zepto.weui.js"></script>
+
+</head>
+<body ontouchstart>
+
+    <div class="weui-flex head-con">
+        <div class="weui-flex__item weui-flex__item_left"><div class="placeholder"><a href="javascript:window.history.go(-1)"><span class="icon icon-109"></span></a></div></div>
+        <div class="weui-flex__item"><div class="placeholder">医院信息</div></div>
+        <div class="weui-flex__item weui-flex__item_right"><div class="placeholder"><a href="#"><span class="icon icon-40"></span></a></div></div>
+    </div>
+
+    <div style="height:48px;"></div>
+
+    <div class="page-bd" >
+        <ul class="weui-mark">
+
+            <li th:each="hos,stat:${hosList}">
+                <a th:href="${hos['hosHref']}" >
+                    <div class="weui-mark-img ">
+                        <img th:src="${hos['hosImg']}">
+                    </div>
+                    <span th:class="${hos['classType']}" th:text="${hos['hosClass']}"></span>
+                    <span class="weui-mark-lb" style="font-size: 17px" th:text="${hos['hosName']}"></span>
+
+                </a>
+            </li>
+
+
+            <!--
+
+
+
+                      <li>
+                          <a href="/hos_detail/hospital_detail7.html" >
+                              <div class="weui-mark-img ">
+                                  <img src="/images/icon/下塘门诊.jpg">
+                              </div>
+                              <span class="weui-mark-rt bg-orange">分院</span>
+                              <span class="weui-mark-lb" style="font-size: 17px">下塘门诊</span>
+
+                          </a>
+                      </li>
+                      -->
+        </ul>
+    </div>
+
+
+
+
+    <!-- 导航 -->
+    <div class="weui-tabbar weui-tabbar-flex">
+        <a href="/register/reglist" class="weui-tabbar__item">
+            <i class="icon icon-67 f27 weui-tabbar__icon"></i>
+            <p class="weui-tabbar__label">预约挂号</p>
+        </a>
+
+        <a href="/payOrder/paylist" class="weui-tabbar__item ">
+            <span style="display: inline-block;position: relative;">
+                <i class="icon icon-43 f27 weui-tabbar__icon"></i>
+
+            </span>
+            <p class="weui-tabbar__label">缴费管理</p>
+        </a>
+
+        <a href="/diagnosis/dialist" class="weui-tabbar__item ">
+                <span style="display: inline-block;position: relative;">
+                    <i class="icon icon-115 f27 weui-tabbar__icon"></i>
+
+                </span>
+            <p class="weui-tabbar__label">诊断结果</p>
+        </a>
+
+        <a href="/user/mine" class="weui-tabbar__item ">
+            <i class="icon icon-85 f27 weui-tabbar__icon" ></i>
+            <p class="weui-tabbar__label">个人中心</p>
+        </a>
+    </div>
+</body>
+</html>
