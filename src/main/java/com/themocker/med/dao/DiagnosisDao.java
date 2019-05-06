@@ -25,7 +25,7 @@ public interface DiagnosisDao {
     @Select({"select ", SELECT_FIELDS, " from ", TABLE_NAME, " where DocNo=#{id}"})
     Doctor selectDocByDocNo(int id);
 
-    @Select({"select ", SELECT_FIELDS, " from ", TABLE_NAME, "where DocDepNo=#{id}"})
+    @Select({"select ", SELECT_FIELDS, " from ", TABLE_NAME, "where DiaPuserNo=#{id}"})
     List<Diagnosis> selectDiaByPuserNo(int id);
 
 

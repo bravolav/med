@@ -31,7 +31,7 @@
         <div class="weui-pay-m" th:each="diag,stat:${diagList}">
             <li class="weui-pay-order">
                 <dl class="weui-pay-line">
-                    <dd class="weui-pay-name" th:text="${reg['diaHosDepName']}"></dd>
+                    <dd class="weui-pay-name" th:text="${diag['diaHosDepName']}"></dd>
                     <dt class="weui-pay-label">医生姓名：</dt><dd class="weui-pay-e" th:text="${diag['diaDocName']}"></dd>
                 </dl>
                 <dl class="weui-pay-line"><dt class="weui-pay-label">挂号编号：</dt><dd class="weui-pay-e" th:text="${diag['diagRegNo']}"></dd></dl>
