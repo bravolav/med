@@ -5,7 +5,9 @@ import com.themocker.med.model.Diagnosis;
 import com.themocker.med.model.Doctor;
 import com.themocker.med.model.Puser;
 import com.themocker.med.model.Register;
+import com.themocker.med.service.*;
 import com.themocker.med.util.TimeUitl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,6 +25,22 @@ import java.util.Map;
 @RequestMapping(value = "diagnosis")
 public class DiagnosisController {
 
+    @Autowired
+    RegisterService registerService;
+
+    @Autowired
+    HospitalService hospitalService;
+
+    @Autowired
+    DepartmentService departmentService;
+
+    @Autowired
+    DoctorService doctorService;
+
+    @Autowired
+    DiagnosisService diagnosisService;
+
+
     @RequestMapping(value = "dialist",method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView dialist(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
         ModelAndView model = new ModelAndView();
@@ -30,44 +48,29 @@ public class DiagnosisController {
         Puser loginuser = new Puser();
         loginuser = (Puser) session.getAttribute("loginuser");
 
-        List<Diagnosis> diagnoses = registerService.getRegByPuserNo((int)loginuser.getPuserNo());
+        List<Diagnosis> diagnoses = diagnosisService.getDiaByPuserNo((int)loginuser.getPuserNo());
 
-        List<Map<String,Object>> reglistersList = new ArrayList<Map<String,Object>>();
+        List<Map<String,Object>> diagnosesList = new ArrayList<Map<String,Object>>();
 
-        for(int i = 0 ;i<registers.size();i++){
-            Register theRegister = registers.get(i);
-            Doctor doctor = doctorService.selectDocByDocNo((int)theRegister.getRegDocNo());
+        for(int i = 0 ;i<diagnoses.size();i++){
+            Diagnosis thediagnosis = diagnoses.get(i);
+
+            int docNo = registerService.selectDocNoByRegNo((int)thediagnosis.getDiaRegNo());
+            Doctor doctor = doctorService.selectDocByDocNo(docNo);
 
             String depName = departmentService.selectDepNameByDepNo((int)doctor.getDocDepNo());
             String hosName = hospitalService.selectHosNameByHosNo(departmentService.selectDepHosNoByDepNo((int)doctor.getDocDepNo()));
 
-            Map<String, Object> mapReglister = new HashMap<String, Object>(){{
-                put("dephosName",hosName+"-"+depName);
-                put("regDocName",doctor.getDocName());
-                put("regNo",theRegister.getRegNo());
-                put("regCreateTime", TimeUitl.getTime(theRegister.getRegCreateTime()));
-                put("regTime",TimeUitl.getTime(theRegister.getRegTime()));
-                int status = (int)theRegister.getRegStatus();
-                switch (status){
-                    case 0:  put("regStatus","未出诊");
-                        put("cancelRegHref","/register/regCancel?regNo="+theRegister.getRegNo());
-                        break;
-                    case 1:  put("regStatus","已出诊");
-                        put("cancelRegHref","");
-                        break;
-                    case 2:  put("regStatus","已取消");
-                        put("cancelRegHref","");
-                        break;
-                    default:break;
-                }
-
+            Map<String, Object> mapDiag = new HashMap<String, Object>(){{
+                put("diaHosDepName",hosName+"-"+depName);
+                put("diaDocName",doctor.getDocName());
+                put("diagRegNo",thediagnosis.getDiaRegNo());
+                put("diagCreateTime",TimeUitl.getTime(thediagnosis.getDiaCreateTime()));
+                put("diagResult", thediagnosis.getDiaResult());
             }};
-            reglistersList.add(mapReglister);
-
+            diagnosesList.add(mapDiag);
         }
-        model.addObject("regsterList",reglistersList);
-
-
+        model.addObject("diagList",diagnosesList);
         model.setViewName("diagnosis");
         return model;
     }

@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:float="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,30 +28,16 @@
     <div style="height:48px;"></div>
 
     <ul class="weui-payrec">
-        <div class="weui-pay-m">
+        <div class="weui-pay-m" th:each="diag,stat:${diagList}">
             <li class="weui-pay-order">
                 <dl class="weui-pay-line">
-                    <dd class="weui-pay-name">大院-西区外科门诊</dd>
-                    <dt class="weui-pay-label">医生姓名：</dt><dd class="weui-pay-e">崔永元</dd>
+                    <dd class="weui-pay-name" th:text="${reg['diaHosDepName']}"></dd>
+                    <dt class="weui-pay-label">医生姓名：</dt><dd class="weui-pay-e" th:text="${diag['diaDocName']}"></dd>
                 </dl>
-                <dl class="weui-pay-line"><dt class="weui-pay-label">挂号编号：</dt><dd class="weui-pay-e">25</dd></dl>
-                <dl class="weui-pay-line"><dt class="weui-pay-label">创建时间：</dt><dd class="weui-pay-e">2015年1月16日 22:34</dd></dl>
-                <dl class="weui-pay-line"><dt class="weui-pay-label">就诊结果：</dt><dd class="weui-pay-e">左眉间一约2.5cm皮肤裂伤，渗血</dd></dl>
+                <dl class="weui-pay-line"><dt class="weui-pay-label">挂号编号：</dt><dd class="weui-pay-e" th:text="${diag['diagRegNo']}"></dd></dl>
+                <dl class="weui-pay-line"><dt class="weui-pay-label">创建时间：</dt><dd class="weui-pay-e" th:text="${diag['diagCreateTime']}"></dd></dl>
+                <dl class="weui-pay-line"><dt class="weui-pay-label">就诊结果：</dt><dd class="weui-pay-e" th:text="${diag['diagResult']}"></dd></dl>
 
-
-
-            </li>
-        </div>
-
-        <div class="weui-pay-m">
-            <li class="weui-pay-order">
-                <dl class="weui-pay-line">
-                    <dd class="weui-pay-name">大学城-皮肤科门诊</dd>
-                    <dt class="weui-pay-label">医生姓名：</dt><dd class="weui-pay-e">陈晓芬</dd>
-                </dl>
-                <dl class="weui-pay-line"><dt class="weui-pay-label">挂号编号：</dt><dd class="weui-pay-e">26</dd></dl>
-                <dl class="weui-pay-line"><dt class="weui-pay-label">创建时间：</dt><dd class="weui-pay-e">2019年5月1日 12:34</dd></dl>
-                <dl class="weui-pay-line"><dt class="weui-pay-label">就诊结果：</dt><dd class="weui-pay-e">面部背部 丘疹、粉刺。皮肤油腻</dd></dl>
 
 
             </li>
