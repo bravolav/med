@@ -3342,8 +3342,8 @@ Device/OS Detection
 
     defaults = $.fn.datetimePicker.prototype.defaults = {
         input: undefined, // 默认值
-        min: undefined, // YYYY-MM-DD 最大最小值只比较年月日，不比较时分秒
-        max: undefined,  // YYYY-MM-DD
+        min: "2019-05-25", // YYYY-MM-DD 最大最小值只比较年月日，不比较时分秒
+        max: "2019-05-31",  // YYYY-MM-DD
         yearSplit: '-',
         monthSplit: '-',
         dateSplit: '',  // 默认为空
@@ -3359,7 +3359,14 @@ Device/OS Detection
                 {
                     values: (function () {
                         var hours = [];
-                        for (var i=8; i<17; i++) hours.push(formatNumber(i));
+                        hours.push(formatNumber(8));
+                        hours.push(formatNumber(9));
+                        hours.push(formatNumber(10));
+                        hours.push(formatNumber(11));
+                        hours.push(formatNumber(14));
+                        hours.push(formatNumber(15));
+                        hours.push(formatNumber(16));
+
                         return hours;
                     })()
                 },
@@ -3370,7 +3377,8 @@ Device/OS Detection
                 {
                     values: (function () {
                         var minutes = [];
-                        for (var i=0; i<=0; i++) minutes.push(formatNumber(i));
+                        minutes.push(formatNumber(0));
+                        minutes.push(formatNumber(30));
                         return minutes;
                     })()
                 }

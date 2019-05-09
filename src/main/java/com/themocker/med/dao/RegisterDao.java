@@ -14,11 +14,12 @@ public interface RegisterDao {
     // 注意空格
     String TABLE_NAME = " register ";
     String INSERT_FIELDS = "  RegDocNo, RegPuserNo, RegTime,RegCreateTime ,RegStatus";
+    String ADD_FIELDS = "  RegDocNo, RegPuserNo, RegTime,RegStatus";
     String SELECT_FIELDS = " RegNo, " + INSERT_FIELDS;
 
-    @Insert({"insert into ", TABLE_NAME, "(", INSERT_FIELDS,
-            ") values (#{puserAccount},#{puserPassword},#{puserName},#{puserSex},#{puserAge},#{puserCall})"})
-    int addPuser(Puser puser);
+    @Insert({"insert into ", TABLE_NAME, "(", ADD_FIELDS,
+            ") values (#{regDocNo},#{regPuserNo},#{regTime},#{regStatus})"})
+    int addRegister(Register register);
 
     @Select({"select ", SELECT_FIELDS, " from ", TABLE_NAME, " where RegPuserNo=#{id}"})
     List<Register> selectRegByDepNo(int id);

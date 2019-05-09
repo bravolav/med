@@ -46,7 +46,7 @@ public class PayorderController {
                 put("payAmount","¥"+thePayOrder.getPayAmount());
                 put("payContent",thePayOrder.getPayContent());
                 put("payCreateTime",TimeUitl.getTime(thePayOrder.getPayCreateTime()));
-                put("payFinishTime", TimeUitl.getTime(thePayOrder.getPayFinishTime()));
+
                // put("payStatus",thePayOrder.getPayStatus());
                 int status = (int)thePayOrder.getPayStatus();
                 switch (status){
@@ -55,12 +55,14 @@ public class PayorderController {
                         put("hreftext","在线支付");
                         put("btnclass","weui-form-preview__btn weui-form-preview__btn_primary");
                         put("disabled","false");
+                        put("payFinishTime", "无");
                         break;
                     case 1:  put("payStatus","已支付");
                         put("payHref","");
                         put("hreftext","已支付");
                         put("btnclass","weui-form-preview__btn weui-form-preview__btn_default");
                         put("disabled","true");
+                        put("payFinishTime", TimeUitl.getTime(thePayOrder.getPayFinishTime()));
                         break;
                     default:break;
                 }

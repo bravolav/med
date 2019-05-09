@@ -1,19 +1,13 @@
 package com.themocker.med.controller;
 
-import com.themocker.med.dao.DoctorDao;
 import com.themocker.med.model.*;
-import com.themocker.med.service.DepartmentService;
-import com.themocker.med.service.DoctorService;
-import com.themocker.med.service.HospitalService;
-import com.themocker.med.service.RegisterService;
+import com.themocker.med.service.*;
 import com.themocker.med.util.TimeUitl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,6 +34,9 @@ public class RegisterController {
 
     @Autowired
     DoctorService doctorService;
+
+    @Autowired
+    PayOrderService payOrderService;
 
     @RequestMapping(value = "reglist",method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView reglist(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
@@ -140,10 +137,38 @@ public class RegisterController {
     @RequestMapping(value = "regSuccess",method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView regSuccess(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 
-
         ModelAndView model = new ModelAndView();
-        model.setViewName("page-success");
-        return model;
+        Register register = new Register();
+        Payorder payorder = new Payorder();
+
+        String docNo = request.getParameter("docNo");
+        String regTime = request.getParameter("regTime");
+        String puserNo = request.getParameter("puserNo");
+        String payAmount = request.getParameter("payamount");
+        String payContent = "挂号费";
+
+
+        register.setRegDocNo(Long.parseLong(docNo));
+        register.setRegTime(TimeUitl.StringToTimestamp(regTime));
+        register.setRegPuserNo(Long.parseLong(puserNo));
+        register.setRegStatus(0);
+
+        payorder.setPayAmount(Double.parseDouble(payAmount));
+        payorder.setPayContent(payContent);
+        payorder.setPayPuserNo(Long.parseLong(puserNo));
+        payorder.setPayStatus(0);
+
+        ;
+
+        if(registerService.addRegister(register) == 1 && payOrderService.addPayOrder(payorder) == 1){
+            model.setViewName("reg-success");
+            return model;
+        }else {
+            model.setViewName("page-failure");
+            return model;
+        }
+
+
     }
 
 
@@ -199,9 +224,29 @@ public class RegisterController {
     }
 
 
+
+    @RequestMapping(value = "regCheckTime",method = {RequestMethod.POST, RequestMethod.GET})
+    @ResponseBody
+    public Map<String ,Object> regCheckTime(String docNo,String regTime) throws Exception{
+
+        Map<String,Object> resultMap = new HashMap<String, Object>();
+        Doctor regdoctor = doctorService.selectDocByDocNo(Integer.parseInt(docNo));
+        String docVisTime = regdoctor.getDocVisTime();
+        System.out.println(docVisTime);
+        System.out.println(TimeUitl.getWeek(regTime));
+        if(!docVisTime.equals(TimeUitl.getWeek(regTime))){
+            resultMap.put("result", "就诊时间与医生出诊时间不符！");
+            return resultMap;
+        }
+        resultMap.put("result","SUCCESS");
+        return resultMap;
+    }
+
+
+
+
     @RequestMapping(value = "regCancel",method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView regCancel(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-
 
         ModelAndView model = new ModelAndView();
         model.setViewName("pags");

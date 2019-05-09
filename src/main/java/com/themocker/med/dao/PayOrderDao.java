@@ -15,11 +15,12 @@ public interface PayOrderDao {
     // 注意空格
     String TABLE_NAME = " payorder ";
     String INSERT_FIELDS = " PayNum, PayPuserNo, PayContent, PayAmount, PayCreateTime, PayFinishTime, PayStatus";
+    String ADD_FIELDS = " PayPuserNo, PayContent, PayAmount, PayStatus";
     String SELECT_FIELDS = " PayNo, " + INSERT_FIELDS;
 
-    @Insert({"insert into ", TABLE_NAME, "(", INSERT_FIELDS,
-            ") values (#{puserAccount},#{puserPassword},#{puserName},#{puserSex},#{puserAge},#{puserCall})"})
-    int addPuser(Puser puser);
+    @Insert({"insert into ", TABLE_NAME, "(", ADD_FIELDS,
+            ") values (#{payPuserNo},#{payContent},#{payAmount},#{payStatus})"})
+    int addPayOrder(Payorder payorder);
 
     @Select({"select  DepName from ", TABLE_NAME, " where DepNo=#{id}"})
     String selectDepNameByDepNo(int id);

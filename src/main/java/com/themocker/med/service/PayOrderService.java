@@ -19,4 +19,8 @@ public class PayOrderService {
      public List<Payorder> selectPayOrderByPuserNo(int id){
         return  payOrderDao.selectPayOrderByPuserNo(id);
     }
+
+    public int addPayOrder(Payorder payorder){
+         return payOrderDao.addPayOrder(payorder);
+    }
 }

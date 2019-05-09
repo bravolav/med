@@ -14,6 +14,42 @@
 
   <script src="/js/common/zepto.min.js"></script>
   <script src="/js/common/zepto.weui.js"></script>
+    <script>
+
+
+        function reg(){
+
+            var params = {};
+            params.docNo = $("#docNo").val();
+            params.regTime = $("#datetime-picker").val();
+
+            var time=$("#datetime-picker").val();
+            if(!time){
+                $("#message").html("请选择就诊时间！");
+                return false;
+            }else{
+                $.ajax({
+                    async:false,
+                    type: "POST",
+                    url: "/register/regCheckTime",//注意路径
+                    data:params,
+                    dataType:"json",
+                    success:function(data){
+                        if(data.result=='SUCCESS'){
+                            $("#regConfirm").submit();
+                        }else{
+                            $("#message").html(data.result);
+
+                        }
+                    },
+                    error:function(data){
+                        $("#message").html(data.result);
+                    }
+                });
+
+            }
+        }
+    </script>
 </head>
 <body ontouchstart>
 
@@ -28,13 +64,13 @@
 <div style="height:48px;"></div>
 
 
-<form>
+<form id="regConfirm" action="/register/regSuccess">
 <div class="weui-cells mt_0">
     <a class="weui-cell weui-cell_access" >
         <div class="weui-cell__bd">
             <p>医生姓名</p>
         </div>
-        <div class="weui-cells__bd" th:text="${docName}"></div>
+        <div class="weui-cells__bd"  th:text="${docName}"></div>
     </a>
     <a class="weui-cell weui-cell_access" >
         <div class="weui-cell__bd">
@@ -63,7 +99,7 @@
         <div class="weui-cell__bd">
             <p>挂号金额</p>
         </div>
-        <div class="weui-cells__bd" name="payamount" th:text="${amount}" style="color: #CE3C39; font-size: 18px">10.0</div>元
+        <div class="weui-cells__bd" th:text="${amount}" style="color: #CE3C39; font-size: 18px">10.0</div>元
     </a>
 
 
@@ -80,12 +116,14 @@
         <div class="weui-cells__bd" th:text="${userNo}"></div>
     </a>
 </div>
-    <div  name="docNo" style="display:none" th:text="${docNo}"></div>
-
+    <input id="docNo" name="docNo" style="display:none" th:value="${docNo}"/>
+    <input  name="puserNo" style="display:none" th:value="${userNo}"/>
+    <input  name="payamount" style="display:none" th:value="${amount}"/>
+    <h5  class="message1" id="message" th:text="${regMSG}" style="text-align: center;font-size:16px;color: red"></h5>
 
 
     <div class="weui-btn-area">
-        <a class="weui-btn weui-btn_primary" href="/register/regSuccess" id="btn">确认挂号</a>
+        <input class="weui-btn weui-btn_primary" type="button" onclick="reg()" id="btn" value="确认挂号"/>
     </div>
 </form>
 <!-- 导航 -->

@@ -19,4 +19,8 @@ public class RegisterService {
     public int selectDocNoByRegNo(int id){
         return registerDao.selectDocNoByRegNo(id);
     }
+
+    public int addRegister(Register register){
+        return registerDao.addRegister(register);
+    }
 }
