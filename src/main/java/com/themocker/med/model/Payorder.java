@@ -5,6 +5,7 @@ public class Payorder {
 
   private long payNo;
   private long payPuserNo;
+  private String payNum;
   private String payContent;
   private double payAmount;
   private java.sql.Timestamp payCreateTime;
@@ -74,4 +75,11 @@ public class Payorder {
     this.payStatus = payStatus;
   }
 
+  public String getPayNum() {
+    return payNum;
+  }
+
+  public void setPayNum(String payNum) {
+    this.payNum = payNum;
+  }
 }

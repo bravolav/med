@@ -28,6 +28,9 @@ public interface PayOrderDao {
     @Select({"select ", SELECT_FIELDS, " from ", TABLE_NAME, " where PayPuserNo=#{id}"})
     List<Payorder> selectPayOrderByPuserNo(int id);
 
+    @Select({"select ", SELECT_FIELDS, " from ", TABLE_NAME, " where PayNo=#{id}"})
+    Payorder selectPayOrderByPayNo(int id);
+
     @Select({"select ", SELECT_FIELDS, " from ", TABLE_NAME, "where DocDepNo=#{id}"})
     List<Doctor> selectDocByDepNo(int id);
 

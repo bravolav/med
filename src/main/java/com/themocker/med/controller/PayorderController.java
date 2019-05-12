@@ -51,7 +51,7 @@ public class PayorderController {
                 int status = (int)thePayOrder.getPayStatus();
                 switch (status){
                     case 0:  put("payStatus","未支付");
-                        put("payHref","/alipay/goPay?regNo="+thePayOrder.getPayNo());
+                        put("payHref","/payOrder/payConfirm?payNo="+thePayOrder.getPayNo());
                         put("hreftext","在线支付");
                         put("btnclass","weui-form-preview__btn weui-form-preview__btn_primary");
                         put("disabled","false");
@@ -76,4 +76,17 @@ public class PayorderController {
         return model;
     }
 
-}
+
+    @RequestMapping(value = "payConfirm",method = {RequestMethod.POST, RequestMethod.GET})
+    public ModelAndView payConfirm(String payNo,HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+        ModelAndView model = new ModelAndView();
+        Payorder payorder = payOrderService.selectPayOrderByPayNo(Integer.parseInt(payNo));
+        model.addObject("payAmount",payorder.getPayAmount());
+        model.addObject("payNum",payorder.getPayNum());
+        model.addObject("payContent",payorder.getPayContent());
+        model.addObject("payCreateTime",payorder.getPayCreateTime());
+
+        model.setViewName("payConfirm");
+        return model;
+    }
+    }

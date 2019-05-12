@@ -40,6 +40,9 @@ public class RegisterController {
 
     @RequestMapping(value = "reglist",method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView reglist(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+
+
+
         ModelAndView model = new ModelAndView();
         List<Hospital> hospitals = new ArrayList<Hospital>();
         hospitals = hospitalService.getAllHos();
@@ -54,6 +57,8 @@ public class RegisterController {
 
         }
         model.addObject("hosList",hospitalsList);
+
+
 
 
         for(int i = 0 ;i<hospitals.size();i++){
@@ -160,7 +165,8 @@ public class RegisterController {
 
         ;
 
-        if(registerService.addRegister(register) == 1 && payOrderService.addPayOrder(payorder) == 1){
+        if(registerService.addRegister(register) == 1 &&
+                payOrderService.addPayOrder(payorder) == 1){
             model.setViewName("reg-success");
             return model;
         }else {
@@ -248,9 +254,13 @@ public class RegisterController {
     @RequestMapping(value = "regCancel",method = {RequestMethod.POST, RequestMethod.GET})
     public ModelAndView regCancel(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 
+
+
         ModelAndView model = new ModelAndView();
         model.setViewName("pags");
         return model;
     }
+
+
 
 }
