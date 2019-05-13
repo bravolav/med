@@ -81,10 +81,10 @@ public class PayorderController {
     public ModelAndView payConfirm(String payNo,HttpServletRequest request, HttpServletResponse response, HttpSession session) {
         ModelAndView model = new ModelAndView();
         Payorder payorder = payOrderService.selectPayOrderByPayNo(Integer.parseInt(payNo));
-        model.addObject("payAmount",payorder.getPayAmount());
-        model.addObject("payNum",payorder.getPayNum());
+        model.addObject("payAmount","¥"+payorder.getPayAmount());
+        model.addObject("payNo",payorder.getPayNo());
         model.addObject("payContent",payorder.getPayContent());
-        model.addObject("payCreateTime",payorder.getPayCreateTime());
+        model.addObject("payCreateTime",TimeUitl.getTime(payorder.getPayCreateTime()));
 
         model.setViewName("payConfirm");
         return model;

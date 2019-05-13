@@ -78,8 +78,4 @@ public class Payorder {
   public String getPayNum() {
     return payNum;
   }
-
-  public void setPayNum(String payNum) {
-    this.payNum = payNum;
-  }
 }

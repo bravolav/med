@@ -32,18 +32,12 @@
 <form id="regConfirm" action="/Alipay/goPay">
 <div class="weui-cells mt_0">
 
-    <div class="weui-form-preview__hd">
-        <div class="weui-form-preview__item">
-            <label class="weui-form-preview__label">付款金额</label>
-            <em class="weui-form-preview__value" th:text="${payAmount}"></em>
-        </div>
-    </div>
 
     <a class="weui-cell weui-cell_access" >
         <div class="weui-cell__bd">
             <p>订单编号</p>
         </div>
-        <div class="weui-cells__bd"  th:text="${payNum}"></div>
+        <div class="weui-cells__bd"  th:text="${payNo}"></div>
     </a>
     <a class="weui-cell weui-cell_access" >
         <div class="weui-cell__bd">
@@ -58,10 +52,16 @@
         <div class="weui-cells__bd" th:text="${payCreateTime}"></div>
     </a>
 
+    <div class="weui-form-preview__hd">
+        <div class="weui-form-preview__item">
+            <label class="weui-form-preview__label" style="color: #0d0d0d;">付款金额</label>
+            <em class="weui-form-preview__value" style="color: red" th:text="${payAmount}"></em>
+        </div>
+    </div>
 
 </div>
     <input  name="payContent" style="display:none" th:value="${payContent}"/>
-    <input  name="payNum" style="display:none" th:value="${payNum}"/>
+    <input  name="payNo" style="display:none" th:value="${payNo}"/>
     <input  name="payAmount" style="display:none" th:value="${payAmount}"/>
 
     <div class="weui-btn-area">

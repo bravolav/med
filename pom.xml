@@ -47,15 +47,11 @@
 
         <!-- alipay begin -->
         <dependency>
-            <groupId>com.alipay</groupId>
+            <groupId>com.alipay.sdk</groupId>
             <artifactId>alipay-sdk-java</artifactId>
-            <version>20170725114550</version>
+            <version>3.7.26.ALL</version>
         </dependency>
-        <dependency>
-            <groupId>com.alipay</groupId>
-            <artifactId>alipay-trade-sdk</artifactId>
-            <version>20161215</version>
-        </dependency>
+
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
