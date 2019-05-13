@@ -24,6 +24,12 @@ public class PayOrderService {
          return payOrderDao.addPayOrder(payorder);
     }
 
+
+
+    public int updatePayOrder(Payorder payorder){
+         return payOrderDao.updatePayOrder(payorder);
+    }
+
     public Payorder  selectPayOrderByPayNo(int id) {
         return payOrderDao.selectPayOrderByPayNo(id);
     }

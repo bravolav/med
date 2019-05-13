@@ -41,8 +41,8 @@ public interface PayOrderDao {
     @Select({"select ", SELECT_FIELDS, " from ", TABLE_NAME, " where PuserAccount=#{account} and PuserPassword=#{password}"})
     Puser selectByPasswordandAccount(String account, String password);
 
-    @Update({"update ", TABLE_NAME, " set PuserPassword=#{puserPassword} where PuserNo=#{puserNo}"})
-    int updatePassword(Puser puser);
+    @Update({"update ", TABLE_NAME, " set PayNum=#{payNum},PayStatus=#{payStatus} where PayNo=#{payNo}"})
+    int updatePayOrder(Payorder payorder);
 
     @Update({"update ", TABLE_NAME, " set  PuserName=#{puserName}, PuserSex=#{puserSex}, PuserAge=#{puserAge}, PuserCall=#{puserCall} where PuserNo=#{puserNo}"})
     int update(Puser puser);

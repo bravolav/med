@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:float="http://www.w3.org/1999/xhtml"
+>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>支付结果提示</title>
+  <link rel="stylesheet" href="/css/weui.css"/>
+  <link rel="stylesheet" href="/css/weuix.css"/>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/common/zepto.min.js"></script>
+  <script src="/js/common/zepto.weui.js"></script>
+</head>
+<body ontouchstart>
+
+  <div class="weui-msg">
+      <div class="weui-msg__icon-area"><i class="weui-icon-success weui-icon_msg"></i></div>
+      <div class="weui-msg__text-area">
+          <h2 class="weui-msg__title">支付成功</h2>
+          <p class="weui-msg__desc">支付费用:<span th:text="${total_amount}"></span></p>
+          <p class="weui-msg__desc">请前往缴费管理查看支付信息</p>
+      </div>
+      <div class="weui-msg__opr-area">
+          <p class="weui-btn-area">
+              <a href="/payOrder/paylist" class="weui-btn weui-btn_primary">缴费管理</a>
+              <a href="/user/mine" class="weui-btn weui-btn_default">返回主界面</a>
+          </p>
+      </div>
+      <div class="weui-msg__extra-area">
+
+      </div>
+  </div>
+
+</body>
+</html>
