@@ -40,7 +40,7 @@ public class AliPayController {
     @RequestMapping(value = "goPay",method = {RequestMethod.POST, RequestMethod.GET})
     public void goPay(HttpServletRequest request, HttpServletResponse httpResponse, HttpSession session) {
         ModelAndView model = new ModelAndView();
-        AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.URL, AlipayConfig.APPID, AlipayConfig.RSA_PRIVATE_KEY, AlipayConfig.FORMAT, AlipayConfig.CHARSET, AlipayConfig.ALIPAY_PUBLIC_KEY, AlipayConfig.SIGNTYPE); //获得初始化的AlipayClient
+        AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.URL, AlipayConfig.APPID,AlipayConfig.RSA_PRIVATE_KEY, AlipayConfig.FORMAT, AlipayConfig.CHARSET, AlipayConfig.ALIPAY_PUBLIC_KEY, AlipayConfig.SIGNTYPE); //获得初始化的AlipayClient
         AlipayTradeWapPayRequest alipayRequest = new AlipayTradeWapPayRequest();//创建API对应的request
         alipayRequest.setReturnUrl(AlipayConfig.return_url);
         alipayRequest.setNotifyUrl(AlipayConfig.notify_url);//在公共参数中设置回跳和通知地址
@@ -50,7 +50,6 @@ public class AliPayController {
         total_amount = total_amount.substring(1);
         String subject = request.getParameter("payContent");
         System.out.println(out_trade_no+"  "+total_amount+"   "+subject);
-
 
         alipayRequest.setBizContent("{" +
                 " \"out_trade_no\":\""+out_trade_no+"\"," +

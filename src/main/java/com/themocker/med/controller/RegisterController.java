@@ -206,13 +206,13 @@ public class RegisterController {
                 int status = (int)theRegister.getRegStatus();
                 switch (status){
                     case 0:  put("regStatus","未出诊");
-                             put("cancelRegHref","/register/regCancel?regNo="+theRegister.getRegNo());
+                             put("style","color:orange;");
                              break;
                     case 1:  put("regStatus","已出诊");
-                             put("cancelRegHref","");
+                             put("style","pointer-events: none;");
                              break;
                     case 2:  put("regStatus","已取消");
-                             put("cancelRegHref","");
+                             put("style","pointer-events: none;");
                              break;
                     default:break;
                 }
@@ -252,13 +252,19 @@ public class RegisterController {
 
 
     @RequestMapping(value = "regCancel",method = {RequestMethod.POST, RequestMethod.GET})
-    public ModelAndView regCancel(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+    @ResponseBody
+    public Map<String ,Object> regCancel(String regNo,HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 
+        Register register = registerService.selectRegByRegNo(Integer.parseInt(regNo));
+        register.setRegStatus(2);
+        Map<String,Object> resultMap = new HashMap<String, Object>();
+        if(registerService.updateRegStatus(register) !=1){
+            resultMap.put("result", "ERROR");
+            return resultMap;
+        }
+        resultMap.put("result","SUCCESS");
+        return resultMap;
 
-
-        ModelAndView model = new ModelAndView();
-        model.setViewName("pags");
-        return model;
     }
 
 

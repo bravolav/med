@@ -20,6 +20,16 @@ public class RegisterService {
         return registerDao.selectDocNoByRegNo(id);
     }
 
+
+    public Register selectRegByRegNo(int id){
+        return registerDao.selectRegByRegNo(id);
+    }
+
+
+    public int updateRegStatus(Register register){
+        return registerDao.updateRegStatus(register);
+    }
+
     public int addRegister(Register register){
         return registerDao.addRegister(register);
     }

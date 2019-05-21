@@ -27,8 +27,8 @@ public interface RegisterDao {
     @Select({"select RegDocNo", SELECT_FIELDS, " from ", TABLE_NAME, " where RegNo=#{id}"})
     int selectDocNoByRegNo(int id);
 
-    @Select({"select ", SELECT_FIELDS, " from ", TABLE_NAME, "where DocDepNo=#{id}"})
-    List<Doctor> selectDocByDepNo(int id);
+    @Select({"select ", SELECT_FIELDS, " from ", TABLE_NAME, "where RegNo=#{id}"})
+    Register selectRegByRegNo(int id);
 
 
     @Select({"select ", SELECT_FIELDS, " from ", TABLE_NAME, ""})
@@ -40,8 +40,8 @@ public interface RegisterDao {
     @Update({"update ", TABLE_NAME, " set PuserPassword=#{puserPassword} where PuserNo=#{puserNo}"})
     int updatePassword(Puser puser);
 
-    @Update({"update ", TABLE_NAME, " set  PuserName=#{puserName}, PuserSex=#{puserSex}, PuserAge=#{puserAge}, PuserCall=#{puserCall} where PuserNo=#{puserNo}"})
-    int update(Puser puser);
+    @Update({"update ", TABLE_NAME, " set RegStatus=#{regStatus} where RegNo=#{regNo}"})
+    int updateRegStatus(Register register);
 
     @Delete({"delete from ", TABLE_NAME, " where id=#{id}"})
     int deleteById(int id);
