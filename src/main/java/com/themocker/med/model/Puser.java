@@ -1,14 +1,32 @@
 package com.themocker.med.model;
 
 
+import javax.validation.constraints.*;
+
 public class Puser {
 
   private long puserNo;
+
+  @NotEmpty(message="账号不能为空")
   private String puserAccount;
+
+  @NotEmpty(message="密码不能为空")
   private String puserPassword;
+
+  @NotEmpty(message="用户名不能为空")
   private String puserName;
+
+  @NotEmpty(message="性别不能为空")
+  @Pattern(regexp = "['男'|'女']",message = "性别格式为'男'或'女'")
   private String puserSex;
-  private long puserAge;
+
+  @NotNull(message="年龄不能为空")
+  @Min(value=0,message="年龄最小为0岁")
+  @Max(value=110,message="年龄最大为110岁")
+  private Integer puserAge;
+
+  @NotEmpty(message="电话不能为空")
+  @Size(max = 11,min = 11,message = "请输入正确的11位手机号码")
   private String puserCall;
 
 
@@ -57,11 +75,11 @@ public class Puser {
   }
 
 
-  public long getPuserAge() {
+  public Integer getPuserAge() {
     return puserAge;
   }
 
-  public void setPuserAge(long puserAge) {
+  public void setPuserAge(Integer puserAge) {
     this.puserAge = puserAge;
   }
 

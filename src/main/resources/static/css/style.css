@@ -18,7 +18,7 @@
 .head-con .weui-flex__item_left .placeholder{text-align: left;}
 .head-con .weui-flex__item_right .placeholder{text-align: right;}
 
-.mine-top{text-align: center;padding: 34px 10px;background: url(../images/user_bg.jpg);color: #fff;}
+.mine-top{text-align: center;padding: 34px 10px;background: url(../images/user_bg.jpg);background-size:cover;color: #fff;}
 .mine-top .weui-avatar-circle{margin: 0 auto;margin-bottom: 5px;width: 65px;height: 65px;}
 .mine-top .weui-avatar-circle img{width: 65px;height: 65px;}
 

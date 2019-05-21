@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:float="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,16 +14,55 @@
 
   <script src="/js/common/zepto.min.js"></script>
   <script src="/js/common/zepto.weui.js"></script>
+  <script>
+
+      function reloadyemian(){
+          window.location.href="/login";
+      }
+
+        function register() {
+
+
+            var password = $("#password").val();
+            var passwordConfirm = $("#passwordConfirm").val();
+
+            if (password != passwordConfirm) {
+                $.toptip("两次密码不一致", 'warning');
+                return false;
+            } else {
+                $.post("/registerFinish",
+                    {
+                        puserAccount: $("#account").val(),
+                        puserPassword: $("#password").val(),
+                        puserName: $("#username").val(),
+                        puserSex: $("#sex").val(),
+                        puserAge: $("#age").val(),
+                        puserCall: $("#call").val(),
+                    },
+                    function (result) {
+                        if (result == "注册成功!") {
+                            $.toast(result);
+                            window.setTimeout("reloadyemian();",2000);
+                        } else {
+                            $.toptip(result, 'error');
+                        }
+                    }
+                );
+            }
+        }
+
+
+    </script>
 </head>
 <body ontouchstart>
-    <form action="/registerFinish"></form>
+
     <div class="weui-cells">
         <div class="weui-cell">
             <div class="weui-cell__hd">
                 <label class="weui-label">账号</label>
             </div>
             <div class="weui-cell__bd">
-                <input class="weui-input" placeholder="请输入账号" type="tel">
+                <input class="weui-input" placeholder="请输入账号" type="tel" name="account" id="account">
             </div>
         </div>
         <div class="weui-cell">
@@ -28,7 +70,7 @@
                 <label class="weui-label">密码</label>
             </div>
             <div class="weui-cell__bd">
-                <input class="weui-input" placeholder="请输入密码" type="password">
+                <input class="weui-input" placeholder="请输入密码" type="password" name="password" id="password">
             </div>
         </div>
         <div class="weui-cell">
@@ -36,7 +78,7 @@
                 <label class="weui-label">确认密码</label>
             </div>
             <div class="weui-cell__bd">
-                <input class="weui-input" placeholder="请确认密码" type="password">
+                <input class="weui-input" placeholder="请确认密码" type="password" name="passwordConfirm" id="passwordConfirm">
             </div>
         </div>
         <div class="weui-cell">
@@ -44,7 +86,7 @@
                 <label class="weui-label">用户姓名</label>
             </div>
             <div class="weui-cell__bd">
-                <input class="weui-input" placeholder="请输入姓名" type="tel">
+                <input class="weui-input" placeholder="请输入姓名" type="tel" name="username" id="username">
             </div>
         </div>
         <div class="weui-cell">
@@ -52,7 +94,7 @@
                 <label class="weui-label">性别</label>
             </div>
             <div class="weui-cell__bd">
-                <input class="weui-input" placeholder="请输入性别" type="tel">
+                <input class="weui-input" placeholder="请输入性别" type="tel" name="sex" id="sex">
             </div>
         </div>
         <div class="weui-cell">
@@ -60,7 +102,7 @@
                 <label class="weui-label">年龄</label>
             </div>
             <div class="weui-cell__bd">
-                <input class="weui-input" placeholder="请输入年龄" type="number">
+                <input class="weui-input" placeholder="请输入年龄" type="number" name="age" id="age">
             </div>
         </div>
         <div class="weui-cell">
@@ -68,31 +110,15 @@
                 <label class="weui-label">手机号码</label>
             </div>
             <div class="weui-cell__bd">
-                <input class="weui-input" placeholder="请输入手机号" type="number">
+                <input class="weui-input" placeholder="请输入手机号" type="number" name="call" id="call">
             </div>
         </div>
     </div>
 
+        <div class="weui-btn-area">
+            <input class="weui-btn weui-btn_primary" type="button" value="注册" onclick="register()" id="btn"/>    </div>
 
 
-    <div class="weui-btn-area">
 
-        <a class="weui-btn weui-btn_primary"  href="/registerFinish" id="btn">注册</a>
-
-
-    </div>
-
-<script>
-    $(document).on("click", "#btn", function() {
-
-
-        $.toast("操作成功", function() {
-            console.log('close');
-
-        });
-
-
-    })
-</script>
 </body>
 </html>

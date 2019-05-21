@@ -31,18 +31,18 @@
                     dataType:"json",
                     success:function(data){
                         if(data.result=='SUCCESS'){
-                            $.toptip('取消成功', 'success');
+                            $.toast("取消成功",1500);
                             var t = setTimeout(function(){window.location.reload();},1000);
                         }else{
-                            $.toptip('取消失败', 'error');
+                            $.toast("取消失败",1500);
                         }
                     },
                     error:function(data){
-                        $.toptip('取消失败', 'error');
+                        $.toast("取消失败",1500);
                     }
                 });
             }, function() {
-                $.toptip('取消操作', 'warning');
+                $.toast("取消失败",1500);
             });
 
 
