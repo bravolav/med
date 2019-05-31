@@ -58,7 +58,7 @@ public class LoginController {
 
         if(bindingResult.hasErrors()){
             return bindingResult.getFieldError().getDefaultMessage();
-        }else if (puserService.selectPuserById((int) puser.getPuserNo()) != null) {
+        }else if (puserService.selectPuserByPuserAccount(puser.getPuserAccount())!= null) {
             return "该账号已经被注册";
 
         }else {

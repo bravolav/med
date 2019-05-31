@@ -18,8 +18,8 @@ public class PuserService {
         return puserDao.addPuser(puser);
     }
 
-    public Puser selectPuserById(int puserNo){
-        return puserDao.selectPuserById(puserNo);
+    public Puser selectPuserByPuserAccount(String puserAccount){
+        return puserDao.selectPuserByPuserAccount(puserAccount);
     }
 
     public Puser getPuserByAccountAndPassword(String account,String password){

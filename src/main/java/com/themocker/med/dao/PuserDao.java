@@ -17,8 +17,8 @@ public interface PuserDao {
             ") values (#{puserAccount},#{puserPassword},#{puserName},#{puserSex},#{puserAge},#{puserCall})"})
     int addPuser(Puser puser);
 
-    @Select({"select ", SELECT_FIELDS, " from ", TABLE_NAME, " where puserNo=#{puserNo}"})
-    Puser selectPuserById(int puserNo);
+    @Select({"select ", SELECT_FIELDS, " from ", TABLE_NAME, " where puserAccount=#{puserAccount}"})
+    Puser selectPuserByPuserAccount(String puserAccount);
 
     @Select({"select ", SELECT_FIELDS, " from ", TABLE_NAME, " where id=#{account}"})
     Puser selectByAccount(String account);
